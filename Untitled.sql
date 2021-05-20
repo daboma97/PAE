@@ -20,15 +20,11 @@ CREATE TABLE compraOnline(
 	cognom varchar(32),
 	email varchar(64),
 	ntargeta varchar(32),
-	dataCompra varchar(16),
 	foreign key (idCompra) references compra(nref),
 	foreign key (idClient) references clients(nclient));
 
 DROP TABLE compraOnline;
-delete from compra;
-drop table compra;
-delete from devolucions ;
-drop table devolucions ;
+
 CREATE TABLE clients(
 	nclient int,
 	nom varchar(32),
@@ -145,56 +141,6 @@ INSERT INTO compraOnline VALUES(10, 7, 'Laura', 'Ruiz', 'lauraruiz03@fib.upc.edu
 
 
 INSERT INTO reclamacions VALUES(1, 'joan.soler@ub.cat', '13/03/2012', 5, 'Pantalons', 'Trencats');
-
-DELETE FROM clients;
-drop table clients;
-
-
-CREATE TABLE clients (
-	idClient int,
-	nom varchar(32),
-	cognom varchar(32),
-	dataNeixement varchar(16),
-	genere varchar(16),
-	email varchar(64),
-	adresa varchar(64),
-	codiPostal varchar(32),
-	ciutat varchar(32),
-	passwd varchar(128),
-	nTargeta varchar(64),
-	dataRegistre varchar(16),
-	primary key(idClient));
-
-
-CREATE TABLE compra (
-	nref int,
-	nitems int,
-	import double,
-	dataCompra varchar(16),
-	idClient int,
-	idVenedor int,
-	primary key (nref),
-	foreign key (idClient) references clients(idClient),
-	foreign key (idVenedor) references treballador(id));
-
-drop table compra;
-drop table clients;
-
-
-INSERT INTO clients VALUES(1, 'Nacho', 'Perez', '25/04/1989', 'M', 'nacho.perez@esade.com', 'Carrer Mallorca 43', '08029', 'Barcelona', '$2a$04$jTP4SsWMPMYu8FOVG78nz.bHcCyzrEk.WGkq3dZnfeo8MHCSXjD0S', '2316 2432 2212 3582', '18/12/2011');
-INSERT INTO clients VALUES(2, 'Lucia', 'Garcia', '18/12/2002', 'F', 'lucia252021@fib.upc.edu', 'Plaça Major de Sarrià 3', '08017', 'Barcelona', '$2a$04$.ANXhrM1tCBf9BqZGE33aOdy2k0O.QUgp32gaXP0EcURSMv4uUG8G', '9522 3245 6938 7821', '25/04/2018');
-
-delete from clients;
-
-INSERT INTO compra VALUES(1, 3, 43.80, '18/12/2011', 1, null);
-INSERT INTO compra VALUES(2, 5, 69.99, '13/02/2012', 1, null);
-INSERT INTO compra VALUES(3, 6, 95.68, '25/04/2018', 2, null); 
-
-#Tenim dos compres una de fa 5 anys i l'altre de fa dos mesos.
-#Si per política de l'empresa se l'ha de guardar 3 anys, s'anonimitzarà la compra pero no la persona
-
-
-SELECT * FROM clients WHERE dataRegistre > '18/04/2013';
 
 
 
