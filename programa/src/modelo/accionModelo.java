@@ -14,19 +14,11 @@ import java.util.ArrayList;
  */
 public class accionModelo {
     
-    private String conector = "jdbc:mysql://localhost:3306/ey";
+    private String conector = "jdbc:mysql://localhost:3306/ey?useSSL=false";
     private String userPasado;
     private String passwordPasado;
     private String urlPasado;
     
-    public ArrayList<String> listadoTablas() {
-        
-        accionSQL as = new accionSQL(conector, "dani", "dani");
-        
-        ArrayList<String> listado = new ArrayList<>();
-        listado = as.cogerTodasClases();
-        return listadoTablas();
-    }
     
     public void mostrarValores() {
         accionSQL as = new accionSQL(conector, "dani", "dani");
@@ -74,6 +66,20 @@ public class accionModelo {
         this.passwordPasado = passwd;
     }
     
+    public ArrayList<String> listarTablas() 
+    {
+        accionSQL as = new accionSQL(urlPasado, userPasado, passwordPasado);
+        ArrayList<String> listado = as.mostrarValores();
+        as.cerrarConexion();
+        return listado;
+    }
+    
+    
+    public void iniciarAnonimizacion(String fecha, String tabla) {
+        accionSQL as = new accionSQL(urlPasado, userPasado, passwordPasado);
+        as.iniciarAnonimizacion(fecha, tabla);
+        as.cerrarConexion();
+    }
     
     
     

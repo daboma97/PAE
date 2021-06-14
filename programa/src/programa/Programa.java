@@ -38,13 +38,13 @@ public class Programa {
     public static void main(String[] args)
     {
         
-        Login l = new Login();
+        /*Login l = new Login();
         l.setExtendedState(JFrame.MAXIMIZED_BOTH);
         l.setVisible(true);
+        */
         
         
-        
-        /*System.out.println("Bienvenido");
+        System.out.println("Bienvenido");
         
         System.out.println("Seleccione que tipo es su Base de Datos");
         System.out.println("1 - MySQL");
@@ -52,31 +52,52 @@ public class Programa {
         System.out.println("3 - PostgreSQL");
         System.out.println("4 - DB2 LUW");
         
-        Scanner sc = new Scanner(System.in);
-        String num = sc.nextLine();
-        int numero = Integer.parseInt(num);
+        int numero = 0;
+        while(numero != -1) {
         
-        if(numero == 1) {
-            System.out.println("Ha seleccionado usted MySQL");
+
+            Scanner sc = new Scanner(System.in);
+            String num = sc.nextLine();
+            numero = Integer.parseInt(num);
+
+            if(numero == 1) {
+                System.out.println("Ha seleccionado usted MySQL");
+            }
+
+            System.out.println("Introduzca la URL de su Base de Datos");
+
+            String url = sc.nextLine();
+
+            System.out.println("Introduzca su usuario");
+            String usuario = sc.nextLine();
+            System.out.println("Introduzca contraseña");
+            String passwd = sc.nextLine();
+
+            System.out.println("La base de datos que quiere analizar se llama: " + url);
+            System.out.println("El usuario con el que quiere acceder se llama: " + usuario + " y la contraseña es: " + passwd);
+            
+            accionModelo am = new accionModelo();
+            am.conectarBD(url, usuario, passwd);
+            
+            ArrayList<String> listadoTablas = am.listarTablas();
+            Iterator<String> it = listadoTablas.iterator();
+            int i = 0;
+            while(it.hasNext()) {
+                String tabla = it.next();
+                System.out.println(i + " - " + tabla);
+                ++i;
+            }
+            
+            int seleccionado = Integer.parseInt(sc.nextLine());
+            System.out.println("Has seleccionado: " + listadoTablas.get(seleccionado));
+            System.out.println("A partir de cuando quiere anonimizar:");
+            String fecha = sc.nextLine();
+            System.out.println("Se emepzará a anonimizar a partir de: " + fecha);
+            am.iniciarAnonimizacion(fecha, listadoTablas.get(seleccionado));
+            
+            System.out.println("Que desea hacer ahora?");
+            numero = Integer.parseInt(sc.nextLine());
         }
-        
-        System.out.println("Introduzca la URL de su Base de Datos");
-        
-        String url = sc.nextLine();
-        
-        System.out.println("Introduzca su usuario");
-        String usuario = sc.nextLine();
-        System.out.println("Introduzca contraseña");
-        String passwd = sc.nextLine();
-        
-        System.out.println("La base de datos que quiere analizar se llama: " + url);
-        System.out.println("El usuario con el que quiere acceder se llama: " + usuario + " y la contraseña es: " + passwd);
-        
-        accionModelo am = new accionModelo();
-        am.conectarBD(url, usuario, passwd);*/
-               
-        
-        
     }
     
 }
